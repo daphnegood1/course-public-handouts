@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大學生電子學初學者的 Codex 入門公開講義</title>
+  <style>
+    :root {
+      --ink: #1b2430;
+      --muted: #5f6f7f;
+      --line: #d7dde5;
+      --paper: #fbfaf7;
+      --panel: #ffffff;
+      --accent: #0b7a75;
+      --accent-2: #bc5b2c;
+      --soft: #e9f4f2;
+      --code: #10212a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.7;
+    }
+    header {
+      background: #10212a;
+      color: white;
+      padding: 56px 24px 46px;
+    }
+    .wrap {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    .eyebrow {
+      color: #91d2cc;
+      font-size: 14px;
+      letter-spacing: 0;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.12;
+      margin: 0 0 18px;
+      max-width: 900px;
+    }
+    .lead {
+      max-width: 760px;
+      font-size: 20px;
+      color: #d8e4e7;
+      margin: 0;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(251, 250, 247, .95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    nav .wrap {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 12px 0;
+    }
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    main {
+      padding: 34px 0 70px;
+    }
+    section {
+      margin: 0 auto 42px;
+      padding: 0;
+    }
+    h2 {
+      font-size: 30px;
+      line-height: 1.25;
+      margin: 0 0 16px;
+    }
+    h3 {
+      font-size: 21px;
+      margin: 26px 0 8px;
+    }
+    p { margin: 0 0 14px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .panel strong {
+      color: var(--accent);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      margin: 16px 0 24px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--soft);
+      color: var(--ink);
+      font-weight: 800;
+    }
+    code, pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+    pre {
+      background: var(--code);
+      color: #e7f3f0;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 16px 0 22px;
+      line-height: 1.55;
+    }
+    .callout {
+      border-left: 5px solid var(--accent-2);
+      background: #fff4ed;
+      padding: 16px 18px;
+      margin: 18px 0;
+    }
+    .steps {
+      counter-reset: step;
+      display: grid;
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 15px;
+    }
+    .step:before {
+      counter-increment: step;
+      content: counter(step);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 24px 0 40px;
+      font-size: 14px;
+    }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+      header { padding: 42px 20px 36px; }
+      h2 { font-size: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">公開版講義｜大學生初學電子學</div>
+      <h1>用 Codex 建立電子學學習助教</h1>
+      <p class="lead">把電子學題目、實驗紀錄、筆記與小工具整理成可追蹤、可修改、可累積的 AI 學習工作流。</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#goals">學習目標</a>
+      <a href="#workflow">課程路線</a>
+      <a href="#project">專案工作區</a>
+      <a href="#prompt">電子學提示詞</a>
+      <a href="#github">GitHub 與 Obsidian</a>
+      <a href="#tools">小工具</a>
+      <a href="#practice">練習</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="goals">
+      <h2>這份講義要解決的問題</h2>
+      <div class="grid">
+        <div class="panel"><strong>公式變流程</strong><br>把二極體、BJT、MOSFET、OP Amp 題目整理成可檢查的解題步驟。</div>
+        <div class="panel"><strong>筆記變系統</strong><br>用 Codex 整理課堂筆記、實驗資料與錯題紀錄，避免散落在不同檔案。</div>
+        <div class="panel"><strong>AI 變助教</strong><br>不只問答案，而是建立推導、驗算、修改與複習的學習工作流。</div>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <h2>課程路線</h2>
+      <table>
+        <thead><tr><th>階段</th><th>Codex 主題</th><th>電子學學習情境</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>安裝與安全設定</td><td>建立 electronics-codex-lab 學習專案</td></tr>
+          <tr><td>2</td><td>Plugins 與 Skills</td><td>處理講義、表格、簡報與網頁小工具</td></tr>
+          <tr><td>3</td><td>GitHub</td><td>追蹤解題筆記與程式小工具版本</td></tr>
+          <tr><td>4</td><td>Obsidian</td><td>建立電子學第二大腦與錯題庫</td></tr>
+          <tr><td>5</td><td>專案工作流</td><td>用初始化、開工、收工維持學習連續性</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="project">
+      <h2>建立電子學 Codex 專案工作區</h2>
+      <p>先建立一個專門放電子學學習資料的資料夾，讓 Codex 只在這個安全範圍內工作。</p>
+      <pre><code>electronics-codex-lab/
+├─ notes/
+├─ exercises/
+├─ lab-data/
+├─ tools/
+└─ README.md</code></pre>
+      <div class="callout">重點：Codex 不是只用來聊天，而是要在專案資料夾裡幫你建立檔案、整理資料、修改工具與留下紀錄。</div>
+    </section>
+
+    <section id="prompt">
+      <h2>電子學提示詞：不要只問答案</h2>
+      <p>初學者最容易犯的錯，是只要求 AI 解題。更好的做法，是要求 AI 保留推導與驗算。</p>
+      <pre><code>請用大一電子學初學者能理解的方式，協助我分析這題二極體電路。
+
+請按照以下格式：
+1. 先列出已知條件。
+2. 判斷二極體可能的導通狀態。
+3. 寫出假設。
+4. 用 KVL 或 KCL 推導。
+5. 檢查假設是否成立。
+6. 最後給我一個可複習的解題流程。
+
+請不要只給答案。</code></pre>
+    </section>
+
+    <section id="github">
+      <h2>GitHub 與 Obsidian：把學習留下來</h2>
+      <table>
+        <thead><tr><th>工具</th><th>在電子學學習中的用途</th><th>範例</th></tr></thead>
+        <tbody>
+          <tr><td>GitHub</td><td>保存版本、回溯修改、合作整理小工具</td><td>分壓器計算器、RC 曲線 HTML</td></tr>
+          <tr><td>Obsidian</td><td>管理觀念筆記、錯題、實驗紀錄</td><td>二極體、BJT、MOSFET、OP Amp 筆記庫</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="tools">
+      <h2>可以請 Codex 做的電子學小工具</h2>
+      <div class="grid">
+        <div class="panel"><strong>分壓器計算器</strong><br>練習歐姆定律與串聯電阻。</div>
+        <div class="panel"><strong>RC 時間常數視覺化</strong><br>理解充放電曲線與 5 tau 概念。</div>
+        <div class="panel"><strong>二極體判斷流程圖</strong><br>練習假設、推導、驗算。</div>
+        <div class="panel"><strong>BJT 偏壓檢查表</strong><br>檢查工作點是否合理。</div>
+        <div class="panel"><strong>OP Amp 計算器</strong><br>比較反相與非反相放大器。</div>
+        <div class="panel"><strong>錯題整理器</strong><br>把錯誤原因分類成觀念、公式、符號與假設。</div>
+      </div>
+    </section>
+
+    <section id="practice">
+      <h2>課堂練習</h2>
+      <div class="steps">
+        <div class="step"><div><strong>建立專案</strong><br>建立 electronics-codex-lab，讓 Codex 產生 README、notes、exercises、tools。</div></div>
+        <div class="step"><div><strong>整理一題二極體</strong><br>請 Codex 用已知條件、假設、推導、驗算、結論格式整理。</div></div>
+        <div class="step"><div><strong>建立 RC 小工具</strong><br>輸入 R、C、Vin，輸出 tau 與 0-5 tau 的電壓表。</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>總結</h2>
+      <p>Codex 對電子學初學者最有價值的地方，不是直接給答案，而是幫你建立可重複的學習流程：整理題目、推導步驟、驗算假設、做成筆記、建立小工具，再用 GitHub 與 Obsidian 長期累積。</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">公開版素材整理自 Codex 使用秘技系列，已改寫為大學生電子學初學情境；不含內部備課資料、逐字稿或私有來源路徑。</div>
+  </footer>
+</body>
+</html>
