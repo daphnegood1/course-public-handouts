@@ -1,0 +1,287 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>墾趣企業AI課程講義</title>
+  <style>
+    :root {
+      --bg: #eef6f2;
+      --ink: #20312b;
+      --muted: #62736b;
+      --card: #fffdf7;
+      --line: #d6e2da;
+      --forest: #24523d;
+      --moss: #78956a;
+      --sun: #f2c56b;
+      --sky: #dceefa;
+      --rose: #f6e1dc;
+      --lav: #ebe4f5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(220, 238, 250, .85), rgba(238, 246, 242, .96)),
+        var(--bg);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.7;
+    }
+    header {
+      padding: 42px 22px 26px;
+      background: var(--forest);
+      color: #fff;
+    }
+    .wrap { width: min(1180px, calc(100% - 28px)); margin: 0 auto; }
+    .eyebrow { color: #dbeadf; font-weight: 700; }
+    h1 { margin: 8px 0 10px; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.12; letter-spacing: 0; }
+    h2 { margin: 0 0 14px; font-size: 1.45rem; letter-spacing: 0; }
+    h3 { margin: 0 0 10px; font-size: 1.05rem; letter-spacing: 0; }
+    .sub { max-width: 900px; color: #edf6ef; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      padding: 10px 0;
+      background: rgba(255, 255, 255, .86);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    nav .wrap { display: flex; gap: 8px; overflow-x: auto; }
+    nav a {
+      white-space: nowrap;
+      text-decoration: none;
+      color: var(--forest);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-weight: 700;
+    }
+    section { padding: 30px 0; }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+    .column {
+      min-height: 160px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .48);
+    }
+    .column:nth-child(2n) { background: rgba(235, 228, 245, .46); }
+    .column:nth-child(3n) { background: rgba(246, 225, 220, .5); }
+    .note {
+      position: relative;
+      margin-bottom: 12px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: 0 10px 28px rgba(32, 49, 43, .08);
+    }
+    .pin {
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      min-width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--sun);
+      color: #312300;
+      font-weight: 800;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+    }
+    .meta .note { margin: 0; background: #fff; }
+    p { margin: 0 0 10px; }
+    pre {
+      margin: 10px 0 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #f7faf6;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.65;
+    }
+    summary { cursor: pointer; color: var(--forest); font-weight: 800; }
+    a { color: var(--forest); overflow-wrap: anywhere; }
+    .prompt-note { background: #fff8e7; }
+    footer { padding: 28px; text-align: center; color: var(--muted); }
+    .image-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .image-strip figure {
+      margin: 0;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(32, 49, 43, .08);
+    }
+    .image-strip img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+    }
+    .image-strip figcaption {
+      padding: 8px 10px 12px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">墾趣｜戶外用品零售｜企業 AI 課程</div>
+      <h1>墾趣企業AI課程講義</h1>
+      <p class="sub">本講義保留課程中已選入的知識內容，清理內部標記，並重新整理成適合 墾趣 戶外用品零售 情境的課堂任務。版面採 Padlet 風格卡片牆，方便學生分段閱讀與複製 Prompt。</p>
+    </div>
+  </header>
+  <nav><div class="wrap"><a href="#overview">課程設定</a><a href="#knowledge">知識卡片</a><a href="#websites">企業參考網站</a><a href="#prompts">企業 AI 應用範例</a></div></nav>
+  <main class="wrap">
+    <section id="visuals">
+      <h2>企業情境配圖</h2>
+      <div class="image-strip">
+        <figure><img src="https://daphnegood1.github.io/freetimegear/ai_course_handout/images/montura_rise_shirt.jpg" alt="墾趣戶外服飾參考圖" loading="lazy"><figcaption>戶外服飾商品情境</figcaption></figure>
+        <figure><img src="https://daphnegood1.github.io/freetimegear/ai_course_handout/images/aku_rocket_dfs_gtx.jpg" alt="墾趣登山鞋參考圖" loading="lazy"><figcaption>登山鞋商品情境</figcaption></figure>
+        <figure><img src="https://daphnegood1.github.io/freetimegear/ai_course_handout/images/fizan_trekking_poles.jpg" alt="墾趣登山杖參考圖" loading="lazy"><figcaption>登山杖商品情境</figcaption></figure>
+        <figure><img src="https://daphnegood1.github.io/freetimegear/ai_course_handout/images/sea_to_summit_telos3_tent.jpg" alt="墾趣帳篷參考圖" loading="lazy"><figcaption>露營裝備商品情境</figcaption></figure>
+      </div>
+    </section>
+    <section id="overview">
+      <h2>課程設定</h2>
+      <div class="meta">
+        <article class="note"><h3>課程</h3><p>如何讓ai指令 更準</p><p>墾趣 戶外用品零售 AI 實作課程</p></article>
+        <article class="note"><h3>學員</h3><p>企業學員</p></article>
+        
+      </div>
+    </section>
+    <section id="knowledge">
+      <h2>重新排序後的課程知識卡片</h2>
+      <div class="board">
+        <div class="column"><h2>課堂任務與 Prompt</h2>
+          <article class="note">
+            <div class="pin">1</div>
+            <h3>提示詞設計</h3>
+            <div class="content"><p>這張卡會把「提示詞設計」放進 墾趣 的 戶外用品零售 工作情境中，讓 企業學員 理解這個觀念在日常任務裡扮演的角色。
+學會後，學生可以更清楚地把工作需求拆成 AI 能處理的任務，降低溝通模糊、反覆修改與產出不穩定的問題。</p></div>
+            <details>
+              <summary>學習重點</summary>
+              <pre>學習重點：理解「提示詞設計」在 墾趣 的 戶外用品零售 情境中代表的工作觀念。
+本段會整理：請學生先用一句話問 AI：「幫我做一份 AI 學習報告」。 2. 觀察 AI 回答是否空泛、是否沒有對象與格式。 3. 帶學生用 Markdown 補上背景、任務、限制與輸出格式。 4. 比較兩次回答的差異。 5. 再示範用追問要求 AI ...
+學生學會後，應能判斷這個知識點可以用在 企業學員 的哪一類工作，並知道哪些資料需要先準備、哪些結果需要人工檢查。</pre>
+            </details>
+          </article>
+        
+          <article class="note">
+            <div class="pin">2</div>
+            <h3>提示詞設計</h3>
+            <div class="content"><p>這段會用 墾趣 的真實營運語境解釋「提示詞設計」，協助 企業學員 看懂它不是抽象概念，而是可以改善工作流程的做法。
+學會後，學生能把這個方法用在商品整理、顧客溝通、內容產出或內部協作中，讓 AI 回覆更貼近 墾趣 的品牌與服務情境。</p></div>
+            <details>
+              <summary>學習重點</summary>
+              <pre>學習重點：理解「提示詞設計」在 墾趣 的 戶外用品零售 情境中代表的工作觀念。
+本段會整理：請把下列提問改成精準提示詞： ```text 幫我整理這篇文章。 ``` 必須補上： - 文章用途 - 讀者對象 - 需要保留的資訊 - 輸出格式 - 字數或長度限制
+學生學會後，應能判斷這個知識點可以用在 企業學員 的哪一類工作，並知道哪些資料需要先準備、哪些結果需要人工檢查。</pre>
+            </details>
+          </article>
+        
+          <article class="note">
+            <div class="pin">3</div>
+            <h3>提示詞設計</h3>
+            <div class="content"><p>這張卡會從 戶外用品零售 的角度說明「提示詞設計」，讓 企業學員 知道遇到類似任務時，該如何判斷 AI 可以幫忙到哪一步。
+學會後，學生會比較知道什麼資料要先準備、什麼結果要人工檢查，避免 AI 捏造資訊或產出不符合現場需求的內容。</p></div>
+            <details>
+              <summary>學習重點</summary>
+              <pre>學習重點：理解「提示詞設計」在 墾趣 的 戶外用品零售 情境中代表的工作觀念。
+本段會整理：請用 Markdown 寫一段提示詞，要求 AI 幫你做一份 鐘簡報大綱。提示詞中至少要有： - `# 任務` - `# 背景` - `# 輸出格式` - 三個條列限制 - 一段放在程式區塊中的原始資料
+學生學會後，應能判斷這個知識點可以用在 企業學員 的哪一類工作，並知道哪些資料需要先準備、哪些結果需要人工檢查。</pre>
+            </details>
+          </article>
+        </div><div class="column"><h2>延伸應用</h2>
+          <article class="note">
+            <div class="pin">4</div>
+            <h3>提示詞設計</h3>
+            <div class="content"><p>這段會把「提示詞設計」轉成 墾趣 可理解的工作語言，幫助 企業學員 建立可重複使用的 AI 操作思路。
+學會後，學生可以把同一套思路套用到不同部門任務，從單次提問進一步做到可檢查、可修正、可交付的 AI 工作流程。</p></div>
+            <details>
+              <summary>學習重點</summary>
+              <pre>學習重點：理解「提示詞設計」在 墾趣 的 戶外用品零售 情境中代表的工作觀念。
+本段會整理：AI 常見的失準，不一定是模型能力不足，而是任務說明本身不完整。 | 問題 | 常見提問方式 | 改善方向 | |---|---|---| | 背景不足 | 幫我寫一篇文案 | 補上產品、受眾、情境、目的 | | 目標不清 | 幫我整理一下...
+學生學會後，應能判斷這個知識點可以用在 企業學員 的哪一類工作，並知道哪些資料需要先準備、哪些結果需要人工檢查。</pre>
+            </details>
+          </article>
+        
+          <article class="note">
+            <div class="pin">5</div>
+            <h3>核心概念</h3>
+            <div class="content"><p>這張卡會把「核心概念」放進 墾趣 的 戶外用品零售 工作情境中，讓 企業學員 理解這個觀念在日常任務裡扮演的角色。
+學會後，學生可以更清楚地把工作需求拆成 AI 能處理的任務，降低溝通模糊、反覆修改與產出不穩定的問題。</p></div>
+            <details>
+              <summary>學習重點</summary>
+              <pre>學習重點：理解「核心概念」在 墾趣 的 戶外用品零售 情境中代表的工作觀念。
+本段會整理：| 符號 | 用途 | 提示詞中的用法 | |---|---|---| | `#`、`##` | 標題與段落 | 分隔背景、任務、輸出格式 | | `-` | 條列 | 列出限制、條件、受眾、重點 | | `**文字**` | 強調 | 標...
+學生學會後，應能判斷這個知識點可以用在 企業學員 的哪一類工作，並知道哪些資料需要先準備、哪些結果需要人工檢查。</pre>
+            </details>
+          </article>
+        
+          <article class="note">
+            <div class="pin">6</div>
+            <h3>提示詞設計</h3>
+            <div class="content"><p>這段會用 墾趣 的真實營運語境解釋「提示詞設計」，協助 企業學員 看懂它不是抽象概念，而是可以改善工作流程的做法。
+學會後，學生能把這個方法用在商品整理、顧客溝通、內容產出或內部協作中，讓 AI 回覆更貼近 墾趣 的品牌與服務情境。</p></div>
+            <details>
+              <summary>學習重點</summary>
+              <pre>學習重點：理解「提示詞設計」在 墾趣 的 戶外用品零售 情境中代表的工作觀念。
+本段會整理：你最近一次覺得 AI 回答不準，是因為 AI 錯，還是因為你問得太模糊？ 2. 「給更多背景」和「問更短的問題」哪一個比較重要？為什麼？ 3. Markdown 對 AI 的幫助，主要是排版，還是任務結構？ 4. 什麼情況下應該繼續追問，而...
+學生學會後，應能判斷這個知識點可以用在 企業學員 的哪一類工作，並知道哪些資料需要先準備、哪些結果需要人工檢查。</pre>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <section id="prompts">
+      <h2>墾趣企業 AI 應用範例</h2>
+      <div class="board">
+        <article class="note prompt-note">
+          <h3>商品知識卡</h3>
+          <pre>請幫我把以下商品整理成墾趣門市與電商都可使用的商品知識卡。商品：AKU ROCKET DFS GTX 登山鞋。請輸出：1. 一句話定位 2. 適合客群 3. 三個主要賣點 4. 使用情境 5. 與一般健走鞋的差異 6. 顧客常見問題與回答 7. 門市導購提醒。語氣要專業、好懂，避免過度誇大。</pre>
+        </article>
+      
+        <article class="note prompt-note">
+          <h3>會員分眾 LINE 訊息</h3>
+          <pre>請針對「近期購買登山鞋、但尚未購買登山杖」的墾趣會員，撰寫 3 則 LINE 推播訊息，推薦 FIZAN 登山杖。請分別對應：新手登山、週末健行、準備長路線。每則 80 字以內，包含標題、正文、行動呼籲，語氣自然且不過度推銷。</pre>
+        </article>
+      
+        <article class="note prompt-note">
+          <h3>商品圖文貼文</h3>
+          <pre>請以 MONTURA Rise 排汗上衣為主角，撰寫一則適合墾趣 IG 與 Facebook 的圖文貼文。目標客群是週末健行與戶外旅行者。請輸出：貼文標題、120 字內正文、圖片上文字 10 字以內、3 個賣點、5 個 hashtag。語氣要專業、清爽、有戶外感。</pre>
+        </article>
+      
+        <article class="note prompt-note">
+          <h3>短影音腳本</h3>
+          <pre>請幫墾趣規劃一支 30 秒短影音，主角是 Sea to Summit Telos 3 帳篷。目標客群是想升級露營裝備的會員。請輸出：短影音標題、前三秒鉤子、6 個分鏡、每個分鏡畫面描述、字幕、旁白、需要拍攝的素材清單、結尾行動呼籲。語氣要像專業戶外用品顧問。</pre>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer>由課程知識點編排桌面產生｜學生版已清理內部標記</footer>
+</body>
+</html>
